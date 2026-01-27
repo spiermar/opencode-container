@@ -13,7 +13,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Create non-root user with uid/gid 1000
-RUN groupadd -g 1000 opencode \
+#    Remove any existing user/group with uid/gid 1000 first (ubuntu image may have 'ubuntu' user)
+RUN (getent passwd 1000 | cut -d: -f1 | xargs -r userdel -r 2>/dev/null || true) \
+    && (getent group 1000 | cut -d: -f1 | xargs -r groupdel 2>/dev/null || true) \
+    && groupadd -g 1000 opencode \
     && useradd -u 1000 -g 1000 -m -s /bin/bash opencode \
     && mkdir -p /home/opencode/workspace \
     && chown opencode:opencode /home/opencode/workspace
