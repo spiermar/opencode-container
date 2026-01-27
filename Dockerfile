@@ -17,24 +17,28 @@ RUN useradd -m -s /bin/bash opencode \
     && mkdir -p /workspace \
     && chown opencode:opencode /workspace
 
-# 3. Playwright system dependencies (as root)
-RUN npx playwright install-deps
-
-# 4. Switch to opencode user for remaining setup
+# 3. Switch to opencode user for nvm setup
 USER opencode
 WORKDIR /home/opencode
 
-# 5. Install nvm + Node.js LTS
+# 4. Install nvm + Node.js LTS
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
     && . ~/.nvm/nvm.sh \
     && nvm install --lts \
     && nvm use --lts \
     && nvm alias default node
 
-# 6. Install OpenCode CLI
+# 5. Playwright system dependencies (as root, using opencode's node)
+USER root
+RUN bash -c 'export NVM_DIR="/home/opencode/.nvm" && . "$NVM_DIR/nvm.sh" && npx playwright install-deps'
+
+# 6. Switch back to opencode user for remaining setup
+USER opencode
+
+# 7. Install OpenCode CLI
 RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest
 
-# 7. Install Superpowers
+# 8. Install Superpowers
 RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers \
     && mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills \
     && ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js \
@@ -42,10 +46,10 @@ RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpo
     && ln -s ~/.config/opencode/superpowers/skills \
              ~/.config/opencode/skills/superpowers
 
-# 8. Copy provider configuration
+# 9. Copy provider configuration
 COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/opencode.json
 
-# 9. Copy entrypoint
+# 10. Copy entrypoint
 COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
