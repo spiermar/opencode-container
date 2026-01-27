@@ -20,6 +20,7 @@ RUN useradd -m -s /bin/bash opencode \
 # 3. Switch to opencode user for nvm setup
 USER opencode
 WORKDIR /home/opencode
+ENV HOME=/home/opencode
 
 # 4. Install nvm + Node.js LTS
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
