@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "parasail/parasail-glm-46v",
+  "model": "parasail/GLM-4.6V (Vision)",
   "provider": {
     "parasail": {
       "npm": "@ai-sdk/openai-compatible",
