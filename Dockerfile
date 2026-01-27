@@ -23,8 +23,9 @@ WORKDIR /home/opencode
 ENV HOME=/home/opencode
 
 # 4. Install nvm + Node.js LTS
+ENV NVM_DIR=/home/opencode/.nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
-    && . ~/.nvm/nvm.sh \
+    && . "$NVM_DIR/nvm.sh" \
     && nvm install --lts \
     && nvm use --lts \
     && nvm alias default node
