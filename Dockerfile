@@ -38,8 +38,8 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | b
 USER root
 RUN bash -c 'export NVM_DIR="/home/opencode/.nvm" && . "$NVM_DIR/nvm.sh" && npx playwright install chromium --with-deps'
 
-# 6. Fix npm cache ownership (root's npx created root-owned files)
-RUN chown -R opencode:opencode /home/opencode/.npm
+# 6. Fix cache ownership (root's npx created root-owned files)
+RUN chown -R opencode:opencode /home/opencode/.npm /home/opencode/.cache
 
 # 7. Switch back to opencode user for remaining setup
 USER opencode
