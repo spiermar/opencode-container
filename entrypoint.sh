@@ -28,8 +28,8 @@ case "${MODE:-server}" in
       echo "Error: CODENOMAD_SERVER_PASSWORD is required in server mode"
       exit 1
     fi
-    echo "Starting CodeNomad server on port ${PORT:-9898}..."
-    exec npx @neuralnomads/codenomad --launch --port "${PORT:-9898}"
+    echo "Starting CodeNomad server on port ${CLI_PORT:-9898}..."
+    exec npx @neuralnomads/codenomad --launch --port "${CLI_PORT:-9898}"
     ;;
   interactive)
     echo "Starting interactive shell..."

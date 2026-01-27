@@ -18,7 +18,8 @@ docker build -t opencode .
 | `GIT_EMAIL` | No | `opencode@local` | Git commit email |
 | `GIT_NAME` | No | `OpenCode` | Git commit author name |
 | `MODE` | No | `server` | Run mode: `server` or `interactive` |
-| `PORT` | No | `9898` | Server port (server mode only) |
+| `CLI_PORT` | No | `9898` | Server port (server mode only) |
+| `CLI_HOST` | No | `127.0.0.1` | Interface to bind (server mode only) |
 
 ## Running the Container
 
@@ -60,7 +61,7 @@ docker run -d \
   -e GITHUB_TOKEN="your-github-token" \
   -e CODENOMAD_SERVER_PASSWORD="your-password" \
   -e CLI_HOST="0.0.0.0" \
-  -e PORT=8080 \
+  -e CLI_PORT=8080 \
   -p 8080:8080 \
   -v /path/to/workspace:/home/opencode/workspace \
   opencode

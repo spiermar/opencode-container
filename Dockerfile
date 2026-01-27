@@ -63,7 +63,7 @@ COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
 # Environment defaults
-ENV PORT=9898
+ENV CLI_PORT=9898
 ENV MODE=server
 
 WORKDIR /home/opencode/workspace
