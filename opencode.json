@@ -1,17 +1,46 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "parasail/zai-org/GLM-4.7-FP8",
+  "model": "parasail/parasail-glm-46v",
   "provider": {
     "parasail": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Parasail", // Display name
+      "name": "Parasail",
       "options": {
         "baseURL": "https://api-webflux.saas.parasail.io/v1",
         "apiKey": "{env:PARASAIL_API_KEY}"
       },
       "models": {
-        "zai-org/GLM-4.7-FP8": {
-          "name": "GLM-4.7"
+        "parasail-glm47": {
+          "name": "GLM-4.7 (Best Coding)",
+          "attachment": ["image"],
+          "contextLength": 131072,
+          "maxOutput": 8192
+        },
+        "parasail-glm-46v": {
+          "name": "GLM-4.6V (Vision)",
+          "attachment": ["image"],
+          "contextLength": 131072,
+          "maxOutput": 8192
+        },
+        "parasail-deepseek-v32": {
+          "name": "DeepSeek V3.2",
+          "contextLength": 163840,
+          "maxOutput": 8192
+        },
+        "parasail-qwen3-235b-a22b-instruct-2507": {
+          "name": "Qwen3 235B",
+          "contextLength": 131072,
+          "maxOutput": 8192
+        },
+        "parasail-kimi-k2-instruct": {
+          "name": "Kimi K2 (262k ctx)",
+          "contextLength": 262144,
+          "maxOutput": 8192
+        },
+        "parasail-mistral-small-32-24b": {
+          "name": "Mistral Small (Fast)",
+          "contextLength": 131072,
+          "maxOutput": 8192
         }
       }
     }
