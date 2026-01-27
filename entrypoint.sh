@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Load nvm (required for npx in non-interactive shells)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 # 1. Validate required environment variables
 if [ -z "$PARASAIL_API_KEY" ]; then
   echo "Error: PARASAIL_API_KEY is required"
