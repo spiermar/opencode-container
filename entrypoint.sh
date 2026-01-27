@@ -16,19 +16,18 @@ if [ -z "$GITHUB_TOKEN" ]; then
   exit 1
 fi
 
-if [ -z "$CODENOMAD_SERVER_PASSWORD" ]; then
-  echo "Error: CODENOMAD_SERVER_PASSWORD is required"
-  exit 1
-fi
-
 # 2. Configure GitHub authentication
 gh auth setup-git
-git config --global user.email "${GIT_EMAIL:-opencode@container.local}"
-git config --global user.name "${GIT_NAME:-OpenCode User}"
+git config --global user.email "${GIT_EMAIL:-opencode@local}"
+git config --global user.name "${GIT_NAME:-OpenCode}"
 
 # 3. Switch based on MODE
 case "${MODE:-server}" in
   server)
+    if [ -z "$CODENOMAD_SERVER_PASSWORD" ]; then
+      echo "Error: CODENOMAD_SERVER_PASSWORD is required in server mode"
+      exit 1
+    fi
     echo "Starting CodeNomad server on port ${PORT:-9898}..."
     exec npx @neuralnomads/codenomad --launch --port "${PORT:-9898}"
     ;;
