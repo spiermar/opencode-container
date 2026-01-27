@@ -16,6 +16,11 @@ if [ -z "$GITHUB_TOKEN" ]; then
   exit 1
 fi
 
+if [ -z "$CODENOMAD_SERVER_PASSWORD" ]; then
+  echo "Error: CODENOMAD_SERVER_PASSWORD is required"
+  exit 1
+fi
+
 # 2. Configure GitHub authentication
 gh auth setup-git
 git config --global user.email "${GIT_EMAIL:-opencode@container.local}"
