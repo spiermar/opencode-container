@@ -34,13 +34,16 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | b
 USER root
 RUN bash -c 'export NVM_DIR="/home/opencode/.nvm" && . "$NVM_DIR/nvm.sh" && npx playwright install-deps'
 
-# 6. Switch back to opencode user for remaining setup
+# 6. Fix npm cache ownership (root's npx created root-owned files)
+RUN chown -R opencode:opencode /home/opencode/.npm
+
+# 7. Switch back to opencode user for remaining setup
 USER opencode
 
-# 7. Install OpenCode CLI
+# 8. Install OpenCode CLI
 RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest
 
-# 8. Install Superpowers
+# 9. Install Superpowers
 RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers \
     && mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills \
     && ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js \
@@ -48,10 +51,10 @@ RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpo
     && ln -s ~/.config/opencode/superpowers/skills \
              ~/.config/opencode/skills/superpowers
 
-# 9. Copy provider configuration
+# 10. Copy provider configuration
 COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/opencode.json
 
-# 10. Copy entrypoint
+# 11. Copy entrypoint
 COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
