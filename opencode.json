@@ -12,13 +12,13 @@
       "models": {
         "parasail-glm47": {
           "name": "GLM-4.7 (Best Coding)",
-          "attachment": ["image"],
+          "attachment": true,
           "contextLength": 131072,
           "maxOutput": 8192
         },
         "parasail-glm-46v": {
           "name": "GLM-4.6V (Vision)",
-          "attachment": ["image"],
+          "attachment": true,
           "contextLength": 131072,
           "maxOutput": 8192
         },
