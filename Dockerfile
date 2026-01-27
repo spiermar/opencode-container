@@ -12,8 +12,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y gh \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Create non-root user
-RUN useradd -m -s /bin/bash opencode \
+# 2. Create non-root user with uid/gid 1000
+RUN groupadd -g 1000 opencode \
+    && useradd -u 1000 -g 1000 -m -s /bin/bash opencode \
     && mkdir -p /home/opencode/workspace \
     && chown opencode:opencode /home/opencode/workspace
 
