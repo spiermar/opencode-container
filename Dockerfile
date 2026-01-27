@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
 
 # 2. Create non-root user
 RUN useradd -m -s /bin/bash opencode \
-    && mkdir -p /workspace \
-    && chown opencode:opencode /workspace
+    && mkdir -p /home/opencode/workspace \
+    && chown opencode:opencode /home/opencode/workspace
 
 # 3. Switch to opencode user for nvm setup
 USER opencode
@@ -62,7 +62,7 @@ RUN chmod +x /home/opencode/entrypoint.sh
 ENV PORT=9898
 ENV MODE=server
 
-WORKDIR /workspace
+WORKDIR /home/opencode/workspace
 EXPOSE 9898
 
 ENTRYPOINT ["/home/opencode/entrypoint.sh"]
