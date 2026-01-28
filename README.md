@@ -21,6 +21,41 @@ docker build -t opencode .
 | `CLI_PORT` | No | `9898` | Server port (server mode only) |
 | `CLI_HOST` | No | `127.0.0.1` | Interface to bind (server mode only) |
 
+## Pre-installed Skills
+
+The container comes with the following skill sets pre-installed:
+
+### Superpowers (obra/superpowers)
+
+Development workflow skills including brainstorming, TDD, debugging, code review, and more.
+
+### Anthropic Agent Skills (anthropics/skills)
+
+Official Anthropic skills for creative, technical, and enterprise tasks:
+
+**Document Skills:**
+- `xlsx` - Excel spreadsheet processing
+- `docx` - Word document processing
+- `pptx` - PowerPoint presentation processing
+- `pdf` - PDF document processing
+
+**Example Skills:**
+- `algorithmic-art` - Generative art creation
+- `brand-guidelines` - Brand consistency
+- `canvas-design` - Visual design
+- `doc-coauthoring` - Document collaboration
+- `frontend-design` - UI/UX design
+- `internal-comms` - Internal communications
+- `mcp-builder` - MCP server development
+- `skill-creator` - Custom skill creation
+- `slack-gif-creator` - Slack GIF creation
+- `theme-factory` - Theme styling
+- `web-artifacts-builder` - Web artifact building
+- `webapp-testing` - Web application testing
+
+> **Note:** Some document skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
+> See [anthropics/skills](https://github.com/anthropics/skills) for licensing details.
+
 ## Running the Container
 
 ### Server Mode (Default)
