@@ -13,7 +13,7 @@
         "parasail-glm47": {
           "name": "GLM-4.7 (Best Coding)",
           "attachment": true,
-          "contextLength": 131072,
+          "contextLength": 202752,
           "maxOutput": 8192
         },
         "parasail-glm-46v": {
@@ -33,6 +33,11 @@
           "maxOutput": 8192
         },
         "parasail-kimi-k2-instruct": {
+          "name": "Kimi K2 (262k ctx)",
+          "contextLength": 262144,
+          "maxOutput": 8192
+        },
+        "parasail-kimi-k2-thinking": {
           "name": "Kimi K2 (262k ctx)",
           "contextLength": 262144,
           "maxOutput": 8192
