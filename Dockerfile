@@ -58,6 +58,14 @@ RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpo
     && ln -s ~/.config/opencode/superpowers/skills \
              ~/.config/opencode/skills/superpowers
 
+# 10. Install Anthropic Agent Skills
+# NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
+#       See https://github.com/anthropics/skills for licensing details.
+RUN git clone https://github.com/anthropics/skills.git ~/.config/opencode/anthropics-skills \
+    && mkdir -p ~/.config/opencode/skills \
+    && ln -s ~/.config/opencode/anthropics-skills/skills \
+             ~/.config/opencode/skills/anthropics
+
 # 11. Copy provider configuration
 COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/opencode.json
 
