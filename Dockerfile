@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. System packages + GitHub CLI repository
 RUN apt-get update && apt-get install -y \
-    git curl vim ca-certificates gnupg sudo postgresql-client \
+    build-essential git curl jq make vim ca-certificates gnupg sudo postgresql-client wget zip unzip gnupg openssh-client ripgrep \
     && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
        | gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
@@ -44,10 +44,13 @@ RUN chown -R opencode:opencode /home/opencode/.npm /home/opencode/.cache
 # 7. Switch back to opencode user for remaining setup
 USER opencode
 
-# 8. Install OpenCode CLI
+# 8. Add GitHub to known_hosts for non-interactive git operations
+RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+# 9. Install OpenCode CLI
 RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest
 
-# 9. Install Superpowers
+# 10. Install Superpowers
 RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers \
     && mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills \
     && ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js \
