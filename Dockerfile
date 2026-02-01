@@ -58,7 +58,7 @@ RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpo
     && ln -s ~/.config/opencode/superpowers/skills \
              ~/.config/opencode/skills/superpowers
 
-# 10. Install Anthropic Agent Skills
+# 11. Install Anthropic Agent Skills
 # NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
 #       See https://github.com/anthropics/skills for licensing details.
 RUN git clone https://github.com/anthropics/skills.git ~/.config/opencode/anthropics-skills \
@@ -66,10 +66,22 @@ RUN git clone https://github.com/anthropics/skills.git ~/.config/opencode/anthro
     && ln -s ~/.config/opencode/anthropics-skills/skills \
              ~/.config/opencode/skills/anthropics
 
-# 11. Copy provider configuration
+# 12. Install spiermar skills
+RUN git clone https://github.com/spiermar/claude-config.git ~/.config/opencode/spiermar-claude-config \
+    && mkdir -p ~/.config/opencode/skills \
+    && ln -s ~/.config/opencode/spiermar-claude-config/skills \
+             ~/.config/opencode/skills/spiermar
+
+# 13. Install Vercel Labs skills
+RUN git clone https://github.com/vercel-labs/skills.git ~/.config/opencode/vercel-labs-skills \
+    && mkdir -p ~/.config/opencode/skills \
+    && ln -s ~/.config/opencode/vercel-labs-skills/skills \
+             ~/.config/opencode/skills/vercel-labs
+
+# 14. Copy provider configuration
 COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/opencode.json
 
-# 12. Copy entrypoint
+# 15. Copy entrypoint
 COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
