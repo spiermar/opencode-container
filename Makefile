@@ -13,3 +13,15 @@ ralph: base
 	docker build -t opencode-ralph ralph/
 
 all: superpowers oh-my-opencode ralph
+
+test:
+	./tests/run-all.sh
+
+test-dockerfiles:
+	./tests/lint-dockerfiles.sh
+
+test-scripts:
+	./tests/lint-scripts.sh
+
+test-json:
+	./tests/validate-json.sh
