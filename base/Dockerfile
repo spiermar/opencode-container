@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. System packages + GitHub CLI repository
 RUN apt-get update && apt-get install -y \
-    build-essential git curl jq make vim ca-certificates gnupg sudo postgresql-client wget zip unzip gnupg openssh-client ripgrep shellcheck \
+    build-essential git curl jq make vim ca-certificates gnupg sudo postgresql-client wget zip unzip gnupg openssh-client ripgrep hadolint shellcheck \
     && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
        | gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
@@ -47,8 +47,8 @@ USER opencode
 # 8. Add GitHub to known_hosts for non-interactive git operations
 RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-# 9. Install OpenCode CLI and hadolint
-RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest hadolint
+# 9. Install OpenCode CLI
+RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest
 
 # 10. Install Anthropic Agent Skills
 # NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
