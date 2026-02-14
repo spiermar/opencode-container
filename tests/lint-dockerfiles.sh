@@ -10,7 +10,7 @@ echo "Linting Dockerfiles..."
 
 if ! command -v hadolint &> /dev/null; then
     echo "Error: hadolint not installed"
-    echo "Install with: brew install hadolint (macOS) or apt-get install hadolint (Linux)"
+    echo "Install from: https://github.com/hadolint/hadolint"
     exit 1
 fi
 
