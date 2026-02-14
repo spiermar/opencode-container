@@ -7,7 +7,7 @@
     },
     "build": {
       "model": "parasail/parasail-minimax-m25"
-    },
+    }
   },
   "provider": {
     "parasail": {
