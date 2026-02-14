@@ -46,7 +46,7 @@ All variants share the `opencode-base` image, which includes:
 - **Tools:** git, curl, jq, make, vim, ripgrep, wget, zip, openssh-client, postgresql-client, GitHub CLI
 - **Runtime:** Node.js LTS (via nvm), Playwright Chromium
 - **OpenCode CLI:** `opencode-ai@latest`
-- **Provider:** Parasail (pre-configured)
+- **Provider:** Parasail (pre-configured), Context7, or Tavily (via `opencode.json`)
 
 ### Pre-installed Skills (all variants)
 
@@ -106,7 +106,9 @@ Adds the [Oh-My-OpenCode](https://github.com/code-yeongyu/oh-my-opencode) agent 
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `PARASAIL_API_KEY` | Yes | - | API key for Parasail |
+| `PARASAIL_API_KEY` | If using Parasail | - | API key for Parasail provider |
+| `CONTEXT7_API_KEY` | If using Context7 | - | API key for Context7 provider |
+| `TAVILY_API_KEY` | If using Tavily | - | API key for Tavily provider |
 | `GITHUB_TOKEN` | Yes | - | GitHub token for `gh` CLI authentication |
 | `CODENOMAD_SERVER_PASSWORD` | Server mode | - | Password for CodeNomad server access |
 | `GIT_EMAIL` | No | `opencode@local` | Git commit email |
@@ -114,6 +116,50 @@ Adds the [Oh-My-OpenCode](https://github.com/code-yeongyu/oh-my-opencode) agent 
 | `MODE` | No | `server` | Run mode: `server` or `interactive` |
 | `CLI_PORT` | No | `9898` | Server port (server mode only) |
 | `CLI_HOST` | No | `127.0.0.1` | Interface to bind (server mode only) |
+
+## Provider Configuration
+
+The container comes pre-configured with Parasail as the default provider. You can switch to Context7 or Tavily by creating an `opencode.json` file in your workspace:
+
+### Context7
+
+```json
+{
+  "schema": "https://opencode.ai/schemas/opencode.json",
+  "model": "claude-sonnet-4-20250514",
+  "provider": "context7"
+}
+```
+
+Then run with:
+```bash
+docker run -d \
+  -e CONTEXT7_API_KEY="your-context7-key" \
+  -e GITHUB_TOKEN="your-github-token" \
+  -e CODENOMAD_SERVER_PASSWORD="your-password" \
+  -v /path/to/workspace:/home/opencode/workspace \
+  opencode-superpowers
+```
+
+### Tavily
+
+```json
+{
+  "schema": "https://opencode.ai/schemas/opencode.json",
+  "model": "claude-sonnet-4-20250514",
+  "provider": "tavily"
+}
+```
+
+Then run with:
+```bash
+docker run -d \
+  -e TAVILY_API_KEY="your-tavily-key" \
+  -e GITHUB_TOKEN="your-github-token" \
+  -e CODENOMAD_SERVER_PASSWORD="your-password" \
+  -v /path/to/workspace:/home/opencode/workspace \
+  opencode-superpowers
+```
 
 ## Running the Container
 
