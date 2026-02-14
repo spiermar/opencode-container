@@ -29,7 +29,7 @@ case "${MODE:-server}" in
       exit 1
     fi
     echo "Starting CodeNomad server on port ${CLI_PORT:-9898}..."
-    exec npx @neuralnomads/codenomad --https false --http true --http-port "${CLI_PORT:-9898}"
+    exec npx @neuralnomads/codenomad --https true --http false --https-port "${CLI_PORT:-9898}"
     ;;
   interactive)
     echo "Starting interactive shell..."
