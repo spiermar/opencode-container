@@ -47,8 +47,8 @@ USER opencode
 # 8. Add GitHub to known_hosts for non-interactive git operations
 RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-# 9. Install OpenCode CLI
-RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest
+# 9. Install OpenCode CLI and TypeScript
+RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest typescript
 
 # 10. Install Anthropic Agent Skills
 # NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
