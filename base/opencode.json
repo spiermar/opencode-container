@@ -11,7 +11,7 @@
       },
       "models": {
         "parasail-glm-5": {
-          "name": "GLM-5 (Best Coding)",
+          "name": "GLM-5",
           "contextLength": 202752,
           "maxOutput": 131072
         },
@@ -22,7 +22,7 @@
           "maxOutput": 202752
         },
         "parasail-glm-46v": {
-          "name": "GLM-4.6V (Vision)",
+          "name": "GLM-4.6V",
           "attachment": true,
           "contextLength": 131072,
           "maxOutput": 131072
