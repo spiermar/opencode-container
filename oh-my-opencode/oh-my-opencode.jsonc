@@ -1,3 +1,31 @@
 // oh-my-opencode configuration
 // See https://github.com/code-yeongyu/oh-my-opencode for details
-{}
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  
+  // Override specific agent models
+  "agents": {
+    "Sisyphus": { "model": "parasail/parasail-glm5" }, //  Plans, delegates, and executes complex tasks using specialized subagents with aggressive parallel execution. Todo-driven workflow with extended thinking (32k budget).
+    "Prometheus": { "model": "parasail/parasail-glm5" }, // Strategic planner with interview mode. Creates detailed work plans through iterative questioning. 
+    "Metis": { "model": "parasail/parasail-glm5" }, // Plan consultant - pre-planning analysis. Identifies hidden intentions, ambiguities, and AI failure points.  
+    "Momus": { "model": "parasail/parasail-glm5" }, // Plan reviewer - validates plans against clarity, verifiability, and completeness standards.
+    "oracle": { "model": "parasail/parasail-glm5" }, // Architecture decisions, code review, debugging. Read-only consultation - stellar logical reasoning and deep analysis.
+    "librarian": { "model": "parasail/parasail-glm47" }, // Multi-repo analysis, documentation lookup, OSS implementation examples. Deep codebase understanding with evidence-based answers.
+    "explore": { "model": "parasail/parasail-glm-46v" }, // Fast codebase exploration and contextual grep.
+    "multimodal-looker": { "model": "parasail/parasail-glm-46v" } // Visual content specialist. Analyzes PDFs, images, diagrams to extract information.
+  }
+  
+  // Override category models (used by task)
+  
+  /*
+  "categories": {
+    "visual-engineering": { "model": "opencode/gpt-5-nano" }, // Frontend, UI/UX, design, styling, animation
+    "ultrabrain": { "model": "google/gemini-3-pro" }, // Deep logical reasoning, complex architecture decisions
+    "artistry": { "model": "google/gemini-3-pro" }, // Highly creative/artistic tasks, novel ideas
+    "quick": { "model": "google/gemini-3-pro" }, // Trivial tasks - single file changes, typo fixes, simple modifications
+    "unspecified-low": { "model": "google/gemini-3-pro" }, // Tasks that don't fit other categories, low effort required
+    "unspecified-high": { "model": "google/gemini-3-pro" }, // Tasks that don't fit other categories, high effort required
+    "writing": { "model": "google/gemini-3-pro" } // Documentation, prose, technical writing
+  }
+  */
+}
