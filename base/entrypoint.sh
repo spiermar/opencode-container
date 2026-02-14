@@ -16,7 +16,14 @@ if [ -z "$GITHUB_TOKEN" ]; then
   exit 1
 fi
 
-# 2. Configure GitHub authentication
+# 2. Configure MCP servers based on available API keys
+jq --argjson context7_enabled "$([ -n "$CONTEXT7_API_KEY" ] && echo "true" || echo "false")" \
+   --argjson tavily_enabled "$([ -n "$TAVILY_API_KEY" ] && echo "true" || echo "false")" \
+   '.mcp.context7.enabled = $context7_enabled | .mcp.tavily.enabled = $tavily_enabled' \
+   /home/opencode/workspace/opencode.json > /tmp/opencode.json && \
+mv /tmp/opencode.json /home/opencode/workspace/opencode.json
+
+# 3. Configure GitHub authentication
 gh auth setup-git
 git config --global user.email "${GIT_EMAIL:-opencode@local}"
 git config --global user.name "${GIT_NAME:-OpenCode}"
