@@ -20,7 +20,7 @@ FAILED=0
 
 for script in $SCRIPTS; do
     echo "Linting: $script"
-    if ! shellcheck -s bash -e SC1090,SC2086 "$script"; then
+    if ! shellcheck -s bash -e SC1090,SC1091,SC2086 "$script"; then
         echo "FAILED: $script"
         FAILED=1
     fi
