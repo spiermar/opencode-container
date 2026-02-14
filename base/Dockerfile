@@ -48,7 +48,7 @@ USER opencode
 RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # 9. Install OpenCode CLI and TypeScript
-RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest typescript
+RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@1.2.1 typescript@5.9.3
 
 # 10. Install Anthropic Agent Skills
 # NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
