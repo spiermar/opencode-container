@@ -10,42 +10,57 @@
         "apiKey": "{env:PARASAIL_API_KEY}"
       },
       "models": {
+        "parasail-glm-5": {
+          "name": "GLM-5 (Best Coding)",
+          "contextLength": 202752,
+          "maxOutput": 131072
+        },
         "parasail-glm47": {
-          "name": "GLM-4.7 (Best Coding)",
+          "name": "GLM-4.7",
           "attachment": true,
           "contextLength": 202752,
-          "maxOutput": 8192
+          "maxOutput": 202752
         },
         "parasail-glm-46v": {
           "name": "GLM-4.6V (Vision)",
           "attachment": true,
           "contextLength": 131072,
-          "maxOutput": 8192
+          "maxOutput": 131072
+        },
+        "parasail-minimax-m25": {
+          "name": "MiniMax M2.5",
+          "contextLength": 202752,
+          "maxOutput": 131072
         },
         "parasail-deepseek-v32": {
           "name": "DeepSeek V3.2",
           "contextLength": 163840,
-          "maxOutput": 8192
+          "maxOutput": 163840
         },
         "parasail-qwen3-235b-a22b-instruct-2507": {
           "name": "Qwen3 235B",
-          "contextLength": 131072,
-          "maxOutput": 8192
+          "contextLength": 262144,
+          "maxOutput": 262144
+        },
+        "parasail-kimi-k25": {
+          "name": "Kimi K2.5",
+          "contextLength": 262144,
+          "maxOutput": 262144
         },
         "parasail-kimi-k2-instruct": {
           "name": "Kimi K2 (262k ctx)",
           "contextLength": 262144,
-          "maxOutput": 8192
+          "maxOutput": 262144
         },
         "parasail-kimi-k2-thinking": {
           "name": "Kimi K2 (262k ctx)",
           "contextLength": 262144,
-          "maxOutput": 8192
+          "maxOutput": 262144
         },
         "parasail-mistral-small-32-24b": {
           "name": "Mistral Small (Fast)",
           "contextLength": 131072,
-          "maxOutput": 8192
+          "maxOutput": 131072
         }
       }
     }
