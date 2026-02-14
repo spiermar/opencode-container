@@ -67,11 +67,11 @@ RUN git clone https://github.com/anthropics/skills.git ~/.config/opencode/anthro
              ~/.config/opencode/skills/anthropics
 
 # 12. Install spiermar skills and agents
-RUN git clone https://github.com/spiermar/claude-config.git ~/.config/opencode/spiermar-claude-config \
+RUN git clone https://github.com/spiermar/oh-no-claudecode.git ~/.config/opencode/oh-no-claudecode \
     && mkdir -p ~/.config/opencode/skills ~/.config/opencode/agents \
-    && ln -s ~/.config/opencode/spiermar-claude-config/skills \
+    && ln -s ~/.config/opencode/oh-no-claudecode/skills \
              ~/.config/opencode/skills/spiermar \
-    && ln -s ~/.config/opencode/spiermar-claude-config/agents \
+    && ln -s ~/.config/opencode/oh-no-claudecode/agents \
              ~/.config/opencode/agents/spiermar
 
 # 13. Install Vercel Labs skills
