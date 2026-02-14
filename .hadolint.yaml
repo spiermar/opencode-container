@@ -1,0 +1,13 @@
+ignored:
+  - DL3008
+  - DL3015
+  - DL3059
+  - SC1091
+
+trustedRegistries:
+  - docker.io
+  - ghcr.io
+
+label-schema:
+  version: semver
+  maintainer: text
