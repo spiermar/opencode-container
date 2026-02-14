@@ -30,7 +30,24 @@ JSONC_FILES=$(find . -name "*.jsonc" -type f | grep -v ".git")
 for jsonc_file in $JSONC_FILES; do
     echo "Validating: $jsonc_file (stripping comments)"
     TEMP_FILE=$(mktemp)
-    grep -v '^\s*//' "$jsonc_file" | grep -v '^\s*#' > "$TEMP_FILE"
+    # Use node to strip JSONC comments if available, otherwise use sed
+    if command -v node &> /dev/null; then
+        node -e "
+const fs = require('fs');
+let content = fs.readFileSync('$jsonc_file', 'utf8');
+// Remove multi-line comments first (/* ... */)
+content = content.replace(/\/\*[\s\S]*?\*\//g, '');
+// Remove single-line comments (// ...) but NOT when preceded by : (for URLs)
+content = content.replace(/(?<!:)\/\/.*$/gm, '');
+// Remove empty lines and trim whitespace
+content = content.split('\n').map(line => line.trim()).filter(line => line !== '').join('\n');
+console.log(content);
+" > "$TEMP_FILE"
+    else
+        # Fallback: use sed to handle basic comments
+        # Remove // comments but not :// URLs
+        sed -e 's/\/\/.*$//' -e 's/\/\*.*\*\///g' -e '/^\s*\/\//d' -e '/^\s*$/d' "$jsonc_file" > "$TEMP_FILE"
+    fi
     if ! jq empty "$TEMP_FILE" 2>/dev/null; then
         echo "FAILED: $jsonc_file is not valid JSON (after stripping comments)"
         FAILED=1
