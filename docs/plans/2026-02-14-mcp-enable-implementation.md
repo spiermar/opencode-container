@@ -49,7 +49,7 @@ git commit -m "feat: dynamically enable MCP servers based on API keys"
 
 **Step 1: Build the image**
 
-Run: `docker build -t opencode .`
+Run: `docker build -t opencode-base base/`
 Expected: Build succeeds
 
 **Step 2: Test with both API keys**
@@ -61,7 +61,7 @@ docker run --rm \
   -e GITHUB_TOKEN="test-token" \
   -e CONTEXT7_API_KEY="test-context7" \
   -e TAVILY_API_KEY="test-tavily" \
-  opencode sh -c 'cat /home/opencode/workspace/opencode.json | jq ".mcp.context7.enabled, .mcp.tavily.enabled"'
+  opencode-base sh -c 'cat /home/opencode/workspace/opencode.json | jq ".mcp.context7.enabled, .mcp.tavily.enabled"'
 ```
 Expected: `true` then `true`
 
@@ -73,7 +73,7 @@ docker run --rm \
   -e PARASAIL_API_KEY="test-key" \
   -e GITHUB_TOKEN="test-token" \
   -e CONTEXT7_API_KEY="test-context7" \
-  opencode sh -c 'cat /home/opencode/workspace/opencode.json | jq ".mcp.context7.enabled, .mcp.tavily.enabled"'
+  opencode-base sh -c 'cat /home/opencode/workspace/opencode.json | jq ".mcp.context7.enabled, .mcp.tavily.enabled"'
 ```
 Expected: `true` then `false`
 
@@ -84,7 +84,7 @@ Run:
 docker run --rm \
   -e PARASAIL_API_KEY="test-key" \
   -e GITHUB_TOKEN="test-token" \
-  opencode sh -c 'cat /home/opencode/workspace/opencode.json | jq ".mcp.context7.enabled, .mcp.tavily.enabled"'
+  opencode-base sh -c 'cat /home/opencode/workspace/opencode.json | jq ".mcp.context7.enabled, .mcp.tavily.enabled"'
 ```
 Expected: `false` then `false`
 
