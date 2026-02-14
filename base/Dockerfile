@@ -50,15 +50,7 @@ RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 # 9. Install OpenCode CLI
 RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@latest
 
-# 10. Install Superpowers
-RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers \
-    && mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills \
-    && ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js \
-             ~/.config/opencode/plugins/superpowers.js \
-    && ln -s ~/.config/opencode/superpowers/skills \
-             ~/.config/opencode/skills/superpowers
-
-# 11. Install Anthropic Agent Skills
+# 10. Install Anthropic Agent Skills
 # NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
 #       See https://github.com/anthropics/skills for licensing details.
 RUN git clone https://github.com/anthropics/skills.git ~/.config/opencode/anthropics-skills \
@@ -66,7 +58,7 @@ RUN git clone https://github.com/anthropics/skills.git ~/.config/opencode/anthro
     && ln -s ~/.config/opencode/anthropics-skills/skills \
              ~/.config/opencode/skills/anthropics
 
-# 12. Install spiermar skills and agents
+# 11. Install spiermar skills and agents
 RUN git clone https://github.com/spiermar/oh-no-claudecode.git ~/.config/opencode/oh-no-claudecode \
     && mkdir -p ~/.config/opencode/skills ~/.config/opencode/agents \
     && ln -s ~/.config/opencode/oh-no-claudecode/skills \
@@ -74,16 +66,16 @@ RUN git clone https://github.com/spiermar/oh-no-claudecode.git ~/.config/opencod
     && ln -s ~/.config/opencode/oh-no-claudecode/agents \
              ~/.config/opencode/agents/spiermar
 
-# 13. Install Vercel Labs skills
+# 12. Install Vercel Labs skills
 RUN git clone https://github.com/vercel-labs/skills.git ~/.config/opencode/vercel-labs-skills \
     && mkdir -p ~/.config/opencode/skills \
     && ln -s ~/.config/opencode/vercel-labs-skills/skills \
              ~/.config/opencode/skills/vercel-labs
 
-# 14. Copy provider configuration
+# 13. Copy provider configuration
 COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/opencode.json
 
-# 15. Copy entrypoint
+# 14. Copy entrypoint
 COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
