@@ -14,13 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install hadolint
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y hadolint
-
       - name: Run hadolint
-        run: ./tests/lint-dockerfiles.sh
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
 
   lint-scripts:
     name: Lint Shell Scripts
