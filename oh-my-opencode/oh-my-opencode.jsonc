@@ -5,11 +5,11 @@
   
   // Override specific agent models
   "agents": {
-    "Sisyphus": { "model": "parasail/parasail-glm5" }, //  Plans, delegates, and executes complex tasks using specialized subagents with aggressive parallel execution. Todo-driven workflow with extended thinking (32k budget).
-    "Prometheus": { "model": "parasail/parasail-glm5" }, // Strategic planner with interview mode. Creates detailed work plans through iterative questioning. 
-    "Metis": { "model": "parasail/parasail-glm5" }, // Plan consultant - pre-planning analysis. Identifies hidden intentions, ambiguities, and AI failure points.  
-    "Momus": { "model": "parasail/parasail-glm5" }, // Plan reviewer - validates plans against clarity, verifiability, and completeness standards.
-    "oracle": { "model": "parasail/parasail-glm5" }, // Architecture decisions, code review, debugging. Read-only consultation - stellar logical reasoning and deep analysis.
+    "sisyphus": { "model": "parasail/parasail-glm-5" }, //  Plans, delegates, and executes complex tasks using specialized subagents with aggressive parallel execution. Todo-driven workflow with extended thinking (32k budget).
+    "prometheus": { "model": "parasail/parasail-glm-5" }, // Strategic planner with interview mode. Creates detailed work plans through iterative questioning. 
+    "metis": { "model": "parasail/parasail-glm-5" }, // Plan consultant - pre-planning analysis. Identifies hidden intentions, ambiguities, and AI failure points.  
+    "momus": { "model": "parasail/parasail-glm-5" }, // Plan reviewer - validates plans against clarity, verifiability, and completeness standards.
+    "oracle": { "model": "parasail/parasail-glm-5" }, // Architecture decisions, code review, debugging. Read-only consultation - stellar logical reasoning and deep analysis.
     "librarian": { "model": "parasail/parasail-glm47" }, // Multi-repo analysis, documentation lookup, OSS implementation examples. Deep codebase understanding with evidence-based answers.
     "explore": { "model": "parasail/parasail-glm-46v" }, // Fast codebase exploration and contextual grep.
     "multimodal-looker": { "model": "parasail/parasail-glm-46v" } // Visual content specialist. Analyzes PDFs, images, diagrams to extract information.

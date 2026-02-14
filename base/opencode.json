@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "parasail/parasail-glm47",
+  "model": "parasail/parasail-glm-5",
   "provider": {
     "parasail": {
       "npm": "@ai-sdk/openai-compatible",
