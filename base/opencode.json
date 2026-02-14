@@ -1,6 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "parasail/parasail-glm-5",
+  "model": "parasail/parasail-minimax-m25",
+  "mode": {
+    "plan": {
+      "model": "parasail/parasail-minimax-m25"
+    },
+    "build": {
+      "model": "parasail/parasail-minimax-m25"
+    },
+  },
   "provider": {
     "parasail": {
       "npm": "@ai-sdk/openai-compatible",
@@ -11,56 +19,35 @@
       },
       "models": {
         "parasail-glm-5": {
-          "name": "GLM-5",
-          "contextLength": 202752,
-          "maxOutput": 131072
+          "name": "GLM-5"
         },
         "parasail-glm47": {
-          "name": "GLM-4.7",
-          "attachment": true,
-          "contextLength": 202752,
-          "maxOutput": 202752
+          "name": "GLM-4.7"
         },
         "parasail-glm-46v": {
           "name": "GLM-4.6V",
-          "attachment": true,
-          "contextLength": 131072,
-          "maxOutput": 131072
+          "attachment": true
         },
         "parasail-minimax-m25": {
-          "name": "MiniMax M2.5",
-          "contextLength": 202752,
-          "maxOutput": 131072
+          "name": "MiniMax M2.5"
         },
         "parasail-deepseek-v32": {
-          "name": "DeepSeek V3.2",
-          "contextLength": 163840,
-          "maxOutput": 163840
+          "name": "DeepSeek V3.2"
         },
         "parasail-qwen3-235b-a22b-instruct-2507": {
-          "name": "Qwen3 235B",
-          "contextLength": 262144,
-          "maxOutput": 262144
+          "name": "Qwen3 235B Instruct"
         },
         "parasail-kimi-k25": {
-          "name": "Kimi K2.5",
-          "contextLength": 262144,
-          "maxOutput": 262144
+          "name": "Kimi K2.5 (262k ctx)"
         },
         "parasail-kimi-k2-instruct": {
-          "name": "Kimi K2 (262k ctx)",
-          "contextLength": 262144,
-          "maxOutput": 262144
+          "name": "Kimi K2 (262k ctx)"
         },
         "parasail-kimi-k2-thinking": {
-          "name": "Kimi K2 (262k ctx)",
-          "contextLength": 262144,
-          "maxOutput": 262144
+          "name": "Kimi K2 (262k ctx)"
         },
         "parasail-mistral-small-32-24b": {
-          "name": "Mistral Small (Fast)",
-          "contextLength": 131072,
-          "maxOutput": 131072
+          "name": "Mistral Small (Fast)"
         }
       }
     }
