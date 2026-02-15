@@ -20,8 +20,8 @@ fi
 jq --argjson context7_enabled "$([ -n "$CONTEXT7_API_KEY" ] && echo "true" || echo "false")" \
    --argjson tavily_enabled "$([ -n "$TAVILY_API_KEY" ] && echo "true" || echo "false")" \
    '.mcp.context7.enabled = $context7_enabled | .mcp.tavily.enabled = $tavily_enabled' \
-   /home/opencode/workspace/opencode.json > /tmp/opencode.json && \
-mv /tmp/opencode.json /home/opencode/workspace/opencode.json
+   /home/opencode/.config/opencode/opencode.json > /tmp/opencode.json && \
+mv /tmp/opencode.json /home/opencode/.config/opencode/opencode.json
 
 # 3. Configure GitHub authentication
 gh auth setup-git

@@ -81,9 +81,6 @@ COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/ope
 COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
-# 15. Copy opencode.json to workspace for MCP config
-COPY --chown=opencode:opencode opencode.json /home/opencode/workspace/opencode.json
-
 # Environment defaults
 ENV CLI_PORT=9898
 ENV MODE=server
