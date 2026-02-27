@@ -13,7 +13,20 @@ The OpenCode Container is a Docker image for running OpenCode with CodeNomad, pr
 docker build -t opencode .
 ```
 
-### Test Container - Server Mode
+### Test Container - OpenCode Server Mode
+```bash
+docker run -d \
+  -e PARASAIL_API_KEY="test-key" \
+  -e GITHUB_TOKEN="test-token" \
+  -e CLI_HOST="0.0.0.0" \
+  -p 9898:9898 \
+  -v $(pwd)/test-workspace:/home/opencode/workspace \
+  opencode
+```
+
+Verify: `curl http://localhost:9898`
+
+### Test Container - CodeNomad Mode
 ```bash
 docker run -d \
   -e PARASAIL_API_KEY="test-key" \
@@ -22,6 +35,7 @@ docker run -d \
   -e CLI_HOST="0.0.0.0" \
   -p 9898:9898 \
   -v $(pwd)/test-workspace:/home/opencode/workspace \
+  -e MODE=codenomad \
   opencode
 ```
 
@@ -144,18 +158,20 @@ Required:
 Optional (with defaults):
 - `GIT_EMAIL` - Default: `opencode@local`
 - `GIT_NAME` - Default: `OpenCode`
-- `MODE` - `server` or `interactive`, default: `server`
+- `MODE` - `server`, `codenomad`, or `interactive`, default: `server`
 - `CLI_PORT` - Server port, default: `9898`
 - `CLI_HOST` - Bind address, default: `127.0.0.1`
-- `CODENOMAD_SERVER_PASSWORD` - Required in server mode
+- `CORS` - CORS origin for server mode (optional)
+- `CODENOMAD_SERVER_PASSWORD` - Required in codenomad mode
 
 ## Testing Strategy
 
 1. **Build verification**: Image builds without errors
 2. **Basic smoke test**: `docker run --rm ... opencode --version`
-3. **Server mode**: Verify CodeNomad starts and is accessible on configured port
-4. **Interactive mode**: Verify shell starts and commands work
-5. **Workspace mount**: Verify user can access mounted workspace
+3. **Server mode**: Verify opencode serve starts and is accessible on configured port
+4. **CodeNomad mode**: Verify CodeNomad starts and is accessible on configured port
+5. **Interactive mode**: Verify shell starts and commands work
+6. **Workspace mount**: Verify user can access mounted workspace
 
 ## Git Conventions
 

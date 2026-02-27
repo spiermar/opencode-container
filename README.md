@@ -110,12 +110,13 @@ Adds the [Oh-My-OpenCode](https://github.com/code-yeongyu/oh-my-opencode) agent 
 | `CONTEXT7_API_KEY` | If using Context7 | - | API key for Context7 provider |
 | `TAVILY_API_KEY` | If using Tavily | - | API key for Tavily provider |
 | `GITHUB_TOKEN` | Yes | - | GitHub token for `gh` CLI authentication |
-| `CODENOMAD_SERVER_PASSWORD` | Server mode | - | Password for CodeNomad server access |
+| `CODENOMAD_SERVER_PASSWORD` | CodeNomad mode | - | Password for CodeNomad server access |
 | `GIT_EMAIL` | No | `opencode@local` | Git commit email |
 | `GIT_NAME` | No | `OpenCode` | Git commit author name |
-| `MODE` | No | `server` | Run mode: `server` or `interactive` |
-| `CLI_PORT` | No | `9898` | Server port (server mode only) |
-| `CLI_HOST` | No | `127.0.0.1` | Interface to bind (server mode only) |
+| `MODE` | No | `server` | Run mode: `server`, `codenomad`, or `interactive` |
+| `CLI_PORT` | No | `9898` | Server port (server/codenomad mode) |
+| `CLI_HOST` | No | `127.0.0.1` | Interface to bind (server/codenomad mode) |
+| `CORS` | No | - | CORS origin for server mode |
 
 ## Provider Configuration
 
@@ -136,7 +137,6 @@ Then run with:
 docker run -d \
   -e CONTEXT7_API_KEY="your-context7-key" \
   -e GITHUB_TOKEN="your-github-token" \
-  -e CODENOMAD_SERVER_PASSWORD="your-password" \
   -v /path/to/workspace:/home/opencode/workspace \
   opencode-superpowers
 ```
@@ -156,7 +156,6 @@ Then run with:
 docker run -d \
   -e TAVILY_API_KEY="your-tavily-key" \
   -e GITHUB_TOKEN="your-github-token" \
-  -e CODENOMAD_SERVER_PASSWORD="your-password" \
   -v /path/to/workspace:/home/opencode/workspace \
   opencode-superpowers
 ```
@@ -166,6 +165,32 @@ docker run -d \
 Replace `opencode-superpowers` below with your chosen variant (`opencode-ralph`, `opencode-oh-my-opencode`).
 
 ### Server Mode (Default)
+
+Starts an OpenCode server:
+
+```bash
+docker run -d \
+  -e PARASAIL_API_KEY="your-api-key" \
+  -e GITHUB_TOKEN="your-github-token" \
+  -e CLI_HOST="0.0.0.0" \
+  -p 9898:9898 \
+  -v /path/to/workspace:/home/opencode/workspace \
+  opencode-superpowers
+```
+
+Optionally set CORS origin:
+```bash
+docker run -d \
+  -e PARASAIL_API_KEY="your-api-key" \
+  -e GITHUB_TOKEN="your-github-token" \
+  -e CLI_HOST="0.0.0.0" \
+  -e CORS="https://your-domain.com" \
+  -p 9898:9898 \
+  -v /path/to/workspace:/home/opencode/workspace \
+  opencode-superpowers
+```
+
+### CodeNomad Mode
 
 Starts a CodeNomad server that exposes OpenCode over HTTPS:
 
@@ -177,6 +202,7 @@ docker run -d \
   -e CLI_HOST="0.0.0.0" \
   -p 9898:9898 \
   -v /path/to/workspace:/home/opencode/workspace \
+  -e MODE=codenomad \
   opencode-superpowers
 ```
 
@@ -201,7 +227,6 @@ Once inside the container, you can run `opencode` directly.
 docker run -d \
   -e PARASAIL_API_KEY="your-api-key" \
   -e GITHUB_TOKEN="your-github-token" \
-  -e CODENOMAD_SERVER_PASSWORD="your-password" \
   -e CLI_HOST="0.0.0.0" \
   -e CLI_PORT=8080 \
   -p 8080:8080 \

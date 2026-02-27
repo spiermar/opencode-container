@@ -31,8 +31,24 @@ git config --global user.name "${GIT_NAME:-OpenCode}"
 # 3. Switch based on MODE
 case "${MODE:-server}" in
   server)
+    echo "Starting opencode server..."
+    SERVER_ARGS=()
+
+    PORT="${CLI_PORT:-9898}"
+    SERVER_ARGS+=(--port "$PORT")
+
+    HOSTNAME="${CLI_HOST:-127.0.0.1}"
+    SERVER_ARGS+=(--hostname "$HOSTNAME")
+
+    if [ -n "$CORS" ]; then
+      SERVER_ARGS+=(--cors "$CORS")
+    fi
+
+    exec opencode serve "${SERVER_ARGS[@]}"
+    ;;
+  codenomad)
     if [ -z "$CODENOMAD_SERVER_PASSWORD" ]; then
-      echo "Error: CODENOMAD_SERVER_PASSWORD is required in server mode"
+      echo "Error: CODENOMAD_SERVER_PASSWORD is required in codenomad mode"
       exit 1
     fi
     echo "Starting CodeNomad server on port ${CLI_PORT:-9898}..."
@@ -43,7 +59,7 @@ case "${MODE:-server}" in
     exec /bin/bash
     ;;
   *)
-    echo "Unknown MODE: $MODE (use 'server' or 'interactive')"
+    echo "Unknown MODE: $MODE (use 'server', 'codenomad', or 'interactive')"
     exit 1
     ;;
 esac
