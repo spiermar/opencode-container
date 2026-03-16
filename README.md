@@ -11,6 +11,7 @@ The project uses a **base + variant** architecture: a shared base image (`openco
 | `opencode-superpowers` | [Superpowers](https://github.com/obra/superpowers) plugin & skills | Development workflow skills (brainstorming, TDD, debugging, code review) |
 | `opencode-ralph` | [Ralph](https://github.com/snarktank/ralph) skills | Ralph-specific skills |
 | `opencode-oh-my-opencode` | [Oh-My-OpenCode](https://github.com/code-yeongyu/oh-my-opencode) agent framework | Specialized sub-agents (sisyphus, prometheus, oracle, librarian, and more) |
+| `opencode-get-shit-done` | [Get-Shit-Done](https://github.com/gsd-build/get-shit-done) (GSD) | Meta-prompting, context engineering, and spec-driven development |
 
 ## Building the Images
 
@@ -24,6 +25,7 @@ make all
 make superpowers
 make ralph
 make oh-my-opencode
+make get-shit-done
 
 # Build only the base image
 make base
@@ -35,7 +37,8 @@ The build dependency chain is:
 opencode-base
   ├── opencode-superpowers
   ├── opencode-ralph
-  └── opencode-oh-my-opencode
+  ├── opencode-oh-my-opencode
+  └── opencode-get-shit-done
 ```
 
 ## Base Image
@@ -101,6 +104,20 @@ Adds the [Oh-My-OpenCode](https://github.com/code-yeongyu/oh-my-opencode) agent 
 | librarian | GLM-4.7 | Multi-repo analysis and documentation lookup |
 | explore | GLM-4.6V | Fast codebase exploration |
 | multimodal-looker | GLM-4.6V | Visual content analysis (PDFs, images, diagrams) |
+
+### Get-Shit-Done (GSD)
+
+Adds [Get-Shit-Done](https://github.com/gsd-build/get-shit-done) (GSD) - a meta-prompting, context engineering, and spec-driven development system for OpenCode. Includes commands like:
+
+- `/gsd:new-project` - Initialize a new project with questions, research, requirements, and roadmap
+- `/gsd:discuss-phase [N]` - Capture implementation decisions before planning
+- `/gsd:plan-phase [N]` - Research and plan a phase
+- `/gsd:execute-phase [N]` - Execute all plans in a phase
+- `/gsd:verify-work [N]` - Manual user acceptance testing
+- `/gsd:quick` - Execute ad-hoc tasks with GSD guarantees
+- `/gsd:progress` - Show current progress and next steps
+
+GSD solves context rot by keeping your session fast and responsive through multi-agent orchestration and fresh context windows per task.
 
 ## Environment Variables
 

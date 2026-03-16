@@ -117,12 +117,23 @@ exec npx some-command
 
 ```
 opencode-container/
-├── Dockerfile              # Container definition
-├── entrypoint.sh           # Startup script (must be executable)
-├── opencode.json           # Provider config
-├── README.md               # User documentation
+├── base/
+│   ├── Dockerfile           # Base image
+│   ├── entrypoint.sh        # Shared entrypoint
+│   └── opencode.json        # Shared provider config
+├── superpowers/
+│   └── Dockerfile           # Superpowers variant
+├── oh-my-opencode/
+│   ├── Dockerfile           # Oh-My-OpenCode variant
+│   └── oh-my-opencode.jsonc # Config
+├── ralph/
+│   └── Dockerfile           # Ralph variant
+├── get-shit-done/
+│   └── Dockerfile           # GSD variant
+├── Makefile                 # Build orchestration
+├── README.md                # User documentation
 └── docs/
-    └── plans/              # Design documents (YYYY-MM-DD-name.md)
+    └── plans/               # Design documents (YYYY-MM-DD-name.md)
 ```
 
 ## Common Patterns
