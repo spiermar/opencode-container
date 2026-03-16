@@ -58,6 +58,7 @@ jobs:
     name: Build ${{ matrix.image }} image
     runs-on: ubuntu-latest
     needs: base
+    if: github.event_name != 'pull_request'
     permissions:
       contents: read
       packages: write
