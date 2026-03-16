@@ -12,7 +12,10 @@ oh-my-opencode: base
 ralph: base
 	docker build -t opencode-ralph ralph/
 
-all: superpowers oh-my-opencode ralph
+get-shit-done: base
+	docker build -t opencode-get-shit-done get-shit-done/
+
+all: superpowers oh-my-opencode ralph get-shit-done
 
 test:
 	./tests/run-all.sh
