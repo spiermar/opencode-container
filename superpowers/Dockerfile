@@ -1,4 +1,5 @@
-FROM opencode-base
+ARG BASE_IMAGE=opencode-base
+FROM ${BASE_IMAGE}
 
 USER opencode
 RUN git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers \
