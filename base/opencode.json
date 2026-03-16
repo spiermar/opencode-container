@@ -34,8 +34,11 @@
         "parasail-deepseek-v32": {
           "name": "DeepSeek V3.2"
         },
+        "parasail-qwen35-397b-a17b": {
+          "name": "Qwen3.5 397B A17B"
+        },
         "parasail-qwen3-235b-a22b-instruct-2507": {
-          "name": "Qwen3 235B Instruct"
+          "name": "Qwen3 235B A22B Instruct"
         },
         "parasail-kimi-k25": {
           "name": "Kimi K2.5 (262k ctx)"
