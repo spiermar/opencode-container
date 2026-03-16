@@ -1,4 +1,4 @@
-.PHONY: base superpowers oh-my-opencode ralph all
+.PHONY: base superpowers oh-my-opencode ralph get-shit-done all
 
 base:
 	docker build -t opencode-base base/
