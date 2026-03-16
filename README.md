@@ -41,6 +41,35 @@ opencode-base
   └── opencode-get-shit-done
 ```
 
+## Using Published Images
+
+Images are published to the GitHub Container Registry. You can pull and use them directly without building:
+
+```bash
+# Pull the base image
+docker pull ghcr.io/spiermar/opencode-container-base:latest
+
+# Pull a specific variant
+docker pull ghcr.io/spiermar/opencode-container-superpowers:latest
+docker pull ghcr.io/spiermar/opencode-container-ralph:latest
+docker pull ghcr.io/spiermar/opencode-container-oh-my-opencode:latest
+docker pull ghcr.io/spiermar/opencode-container-get-shit-done:latest
+```
+
+Run using the ghcr.io image name:
+
+```bash
+docker run -d \
+  -e PARASAIL_API_KEY="your-api-key" \
+  -e GITHUB_TOKEN="your-github-token" \
+  -e CLI_HOST="0.0.0.0" \
+  -p 9898:9898 \
+  -v /path/to/workspace:/home/opencode/workspace \
+  ghcr.io/spiermar/opencode-container-superpowers:latest
+```
+
+> **Note:** Replace `opencode-superpowers` with your chosen variant as needed.
+
 ## Base Image
 
 All variants share the `opencode-base` image, which includes:
