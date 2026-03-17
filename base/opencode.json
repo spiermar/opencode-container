@@ -3,10 +3,10 @@
   "model": "parasail/parasail-minimax-m25",
   "mode": {
     "plan": {
-      "model": "parasail/parasail-minimax-m25"
+      "model": "parasail/parasail-glm-5"
     },
     "build": {
-      "model": "parasail/parasail-minimax-m25"
+      "model": "parasail/parasail-glm-5"
     }
   },
   "provider": {
