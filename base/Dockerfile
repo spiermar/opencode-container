@@ -77,7 +77,15 @@ RUN git clone https://github.com/vercel-labs/skills.git ~/.config/opencode/verce
 # 13. Copy provider configuration
 COPY --chown=opencode:opencode opencode.json /home/opencode/.config/opencode/opencode.json
 
-# 14. Copy entrypoint
+# 14. Copy auth.json if it exists (for authentication data)
+RUN mkdir -p /home/opencode/.local/share/opencode
+COPY --chown=opencode:opencode auth.json* /tmp/opencode-auth/
+RUN if [ -f /tmp/opencode-auth/auth.json ]; then \
+        mv /tmp/opencode-auth/auth.json /home/opencode/.local/share/opencode/auth.json; \
+    fi \
+    && rm -rf /tmp/opencode-auth
+
+# 15. Copy entrypoint
 COPY --chown=opencode:opencode entrypoint.sh /home/opencode/entrypoint.sh
 RUN chmod +x /home/opencode/entrypoint.sh
 
