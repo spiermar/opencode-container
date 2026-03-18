@@ -153,6 +153,7 @@ GSD solves context rot by keeping your session fast and responsive through multi
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `PARASAIL_API_KEY` | If using Parasail | - | API key for Parasail provider |
+| `OPENAI_API_KEY` | If using OpenAI | - | API key for OpenAI provider |
 | `CONTEXT7_API_KEY` | If using Context7 | - | API key for Context7 provider |
 | `TAVILY_API_KEY` | If using Tavily | - | API key for Tavily provider |
 | `GITHUB_TOKEN` | Yes | - | GitHub token for `gh` CLI authentication |
