@@ -14,7 +14,7 @@ if ! command -v hadolint &> /dev/null; then
     exit 1
 fi
 
-DOCKERFILES=$(find . -name "Dockerfile" -type f | grep -v ".codenomad")
+DOCKERFILES=$(find . -name "Dockerfile" -type f | grep -v '^./.worktrees/' | grep -v ".codenomad")
 
 FAILED=0
 

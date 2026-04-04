@@ -14,7 +14,7 @@ if ! command -v shellcheck &> /dev/null; then
     exit 1
 fi
 
-SCRIPTS=$(find . -name "*.sh" -type f | grep -v ".git" | grep -v "^./tests/")
+SCRIPTS=$(find . -name "*.sh" -type f | grep -v '^./.worktrees/' | grep -v ".git" | grep -v "^./tests/")
 
 FAILED=0
 

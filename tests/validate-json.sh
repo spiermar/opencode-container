@@ -14,7 +14,7 @@ if ! command -v jq &> /dev/null; then
     exit 1
 fi
 
-JSON_FILES=$(find . -name "*.json" -type f | grep -v ".git" | grep -v ".codenomad")
+JSON_FILES=$(find . -name "*.json" -type f | grep -v '^./.worktrees/' | grep -v ".git" | grep -v ".codenomad")
 
 FAILED=0
 
@@ -26,7 +26,7 @@ for json_file in $JSON_FILES; do
     fi
 done
 
-JSONC_FILES=$(find . -name "*.jsonc" -type f | grep -v ".git")
+JSONC_FILES=$(find . -name "*.jsonc" -type f | grep -v '^./.worktrees/' | grep -v ".git")
 for jsonc_file in $JSONC_FILES; do
     echo "Validating: $jsonc_file (stripping comments)"
     TEMP_FILE=$(mktemp)

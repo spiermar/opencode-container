@@ -1,5 +1,10 @@
 FROM ubuntu:latest
 
+ARG NVM_VERSION=0.40.4
+ARG HADOLINT_VERSION=2.14.0
+ARG OPENCODE_AI_VERSION=1.3.14
+ARG TYPESCRIPT_VERSION=6.0.2
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. System packages + GitHub CLI repository
@@ -11,7 +16,7 @@ RUN apt-get update && apt-get install -y \
        > /etc/apt/sources.list.d/github-cli.list \
     && apt-get update && apt-get install -y gh \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -fsSL -o /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 \
+    && curl -fsSL -o /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 \
     && chmod +x /usr/local/bin/hadolint
 
 # 2. Create non-root user with uid/gid 1000
@@ -30,7 +35,7 @@ ENV HOME=/home/opencode
 
 # 4. Install nvm + Node.js LTS
 ENV NVM_DIR=/home/opencode/.nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
     && . "$NVM_DIR/nvm.sh" \
     && nvm install --lts \
     && nvm use --lts \
@@ -50,7 +55,7 @@ USER opencode
 RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # 9. Install OpenCode CLI and TypeScript
-RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@1.2.1 typescript@5.9.3
+RUN . ~/.nvm/nvm.sh && npm install -g opencode-ai@${OPENCODE_AI_VERSION} typescript@${TYPESCRIPT_VERSION}
 
 # 10. Install Anthropic Agent Skills
 # NOTE: Some skills (docx, pdf, pptx, xlsx) are source-available, not Apache 2.0.
