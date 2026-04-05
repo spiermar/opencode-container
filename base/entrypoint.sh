@@ -10,6 +10,10 @@ if [ -z "$PARASAIL_API_KEY" ]; then
   echo "Warning: PARASAIL_API_KEY is not set; Parasail-backed requests may fail until it is provided." >&2
 fi
 
+if [ -z "$OPENAI_API_KEY" ]; then
+  echo "Warning: OPENAI_API_KEY is not set; OpenAI-backed requests may fail until it is provided." >&2
+fi
+
 if [ -z "$GITHUB_TOKEN" ]; then
   echo "Error: GITHUB_TOKEN is required"
   exit 1
