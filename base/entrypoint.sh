@@ -7,8 +7,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # 1. Validate required environment variables
 if [ -z "$PARASAIL_API_KEY" ]; then
-  echo "Error: PARASAIL_API_KEY is required"
-  exit 1
+  echo "Warning: PARASAIL_API_KEY is not set; Parasail-backed requests may fail until it is provided." >&2
 fi
 
 if [ -z "$GITHUB_TOKEN" ]; then
